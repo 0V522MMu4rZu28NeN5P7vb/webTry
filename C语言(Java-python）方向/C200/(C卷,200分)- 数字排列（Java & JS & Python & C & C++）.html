@@ -1,0 +1,561 @@
+<html lang="zh-CN"><head><meta charset="UTF-8"><style>.nodata  main {width:1000px;margin: auto;}</style></head><body class="nodata " style=""><div class="main_father clearfix d-flex justify-content-center " style="height:100%;"> <div class="container clearfix " id="mainBox"><main><div class="blog-content-box">
+<div class="article-header-box">
+<div class="article-header">
+<div class="article-title-box">
+<h1 class="title-article" id="articleContentId">(C卷,200分)- 数字排列（Java & JS & Python & C & C++）</h1>
+</div>
+</div>
+</div>
+<div id="blogHuaweiyunAdvert"></div>
+
+        <div id="article_content" class="article_content clearfix">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/kdoc_html_views-1a98987dfd.css">
+        <link rel="stylesheet" href="https://csdnimg.cn/release/blogv2/dist/mdeditor/css/editerView/ck_htmledit_views-044f2cf1dc.css">
+                <div id="content_views" class="htmledit_views">
+                    <h4 id="main-toc">题目描述</h4> 
+<p>小明负责公司年会&#xff0c;想出一个趣味游戏&#xff1a;</p> 
+<p>屏幕给出 1 ~ 9 中任意 4 个不重复的数字&#xff0c;大家以最快时间给出这几个数字可拼成的数字从小到大排列位于第 N 位置的数字&#xff0c;其中 N 为给出数字中最大的&#xff08;如果不到这么多数字则给出最后一个即可&#xff09;。</p> 
+<p>注意&#xff1a;</p> 
+<ul><li>2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接&#xff0c;且屏幕不能同时给出 2 和 5&#xff1b;</li><li>6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接&#xff0c;且屏幕不能同时给出 6 和 9。</li></ul> 
+<p></p> 
+<p>如给出&#xff1a;1&#xff0c;4&#xff0c;8&#xff0c;7&#xff0c;则可以拼接的数字为&#xff1a;</p> 
+<p>1&#xff0c;4&#xff0c;7&#xff0c;8&#xff0c;14&#xff0c;17&#xff0c;18&#xff0c;41&#xff0c;47&#xff0c;48&#xff0c;71&#xff0c;74&#xff0c;78&#xff0c;81&#xff0c;84&#xff0c;87&#xff0c;147&#xff0c;148&#xff0c;178 ... (省略后面的数字)</p> 
+<p>那么第 N &#xff08;即8&#xff09;个的数字为 41。</p> 
+<p></p> 
+<h4 id="%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0">输入描述</h4> 
+<p>输入以逗号分隔的 4 个 int 类型整数的字符串。</p> 
+<p></p> 
+<h4 id="%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0">输出描述</h4> 
+<p>输出为这几个数字可拼成的数字从小大大排列位于第 N &#xff08;N为输入数字中最大的数字&#xff09;位置的数字&#xff0c;</p> 
+<p>如果输入的数字不在范围内或者有重复&#xff0c;则输出-1。</p> 
+<p></p> 
+<h4 id="%E7%94%A8%E4%BE%8B">用例</h4> 
+<table border="1" cellpadding="1" cellspacing="1" style="width:500px;"><tbody><tr><td style="width:86px;">输入</td><td style="width:412px;">1,4,8,7</td></tr><tr><td style="width:86px;">输出</td><td style="width:412px;">41</td></tr><tr><td style="width:86px;">说明</td><td style="width:412px;"> <p>可以构成的数字按从小到大排序为&#xff1a;</p> <p>1&#xff0c;4&#xff0c;7&#xff0c;8&#xff0c;14&#xff0c;17&#xff0c;18&#xff0c;41&#xff0c;47&#xff0c;48&#xff0c;71&#xff0c;74&#xff0c;78&#xff0c;81&#xff0c;84&#xff0c;87&#xff0c;147&#xff0c;148&#xff0c;178  ... &#xff08;省略后面的数字&#xff09;&#xff0c;</p> <p>故第8个为41</p> </td></tr></tbody></table> 
+<table border="1" cellpadding="1" cellspacing="1" style="width:500px;"><tbody><tr><td style="width:86px;">输入</td><td style="width:412px;">2,5,1</td></tr><tr><td style="width:86px;">输出</td><td style="width:412px;">-1</td></tr><tr><td style="width:86px;">说明</td><td style="width:412px;">2和5不能同时出现</td></tr></tbody></table> 
+<table border="1" cellpadding="1" cellspacing="1" style="width:500px;"><tbody><tr><td style="width:86px;">输入</td><td style="width:412px;">3,0,9</td></tr><tr><td style="width:86px;">输出</td><td style="width:412px;">-1</td></tr><tr><td style="width:86px;">说明</td><td style="width:412px;">0不在1到9范围内</td></tr></tbody></table> 
+<table border="1" cellpadding="1" cellspacing="1" style="width:500px;"><tbody><tr><td style="width:86px;">输入</td><td style="width:412px;">3,9,7,8</td></tr><tr><td style="width:86px;">输出</td><td style="width:412px;">39</td></tr><tr><td style="width:86px;">说明</td><td style="width:412px;"> <p>注意9可以当6使用&#xff0c;所以可以构成的数字按从小到大排序为&#xff1a;3&#xff0c;6&#xff0c;7&#xff0c;8&#xff0c;9&#xff0c;36&#xff0c;37&#xff0c;38&#xff0c;39&#xff0c;63&#xff0c;67&#xff0c;68&#xff0c;73&#xff0c;76&#xff0c;78&#xff0c;79&#xff0c;83 ... &#xff08;省略后面的数字&#xff09;&#xff0c;</p> <p>故第9个为39</p> </td></tr></tbody></table> 
+<h4 id="%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90">题目解析</h4> 
+<p>首先本题需要我们做一些输入校验&#xff1a;</p> 
+<ul><li>输入同时给出 2 和 5</li><li>输入同时给出 6 和 9</li><li>输入的数字不在范围内或者有重复</li></ul> 
+<p>以上情况的输入返回-1&#xff0c;表示输入校验失败。</p> 
+<p></p> 
+<p>本题需要我们求解某个序列的所有排列情况&#xff0c;比如无重复元素序列&#xff1a;[a, b, c]&#xff0c;则所有排列为&#xff1a;</p> 
+<ul><li>a</li><li>b</li><li>c</li><li>ab</li><li>ba</li><li>ac</li><li>ca</li><li>bc</li><li>cb</li><li>abc</li><li>acb</li><li>bac</li><li>bca</li><li>cab</li><li>cba</li></ul> 
+<p>我们可以用回溯算法求解某个序列的所有排列&#xff0c;关于回溯算法求解排列可以参考&#xff1a;</p> 
+<p><a href="https://fcqian.blog.csdn.net/article/details/127286788" rel="nofollow" title="LeetCode - 46 全排列_全排列 46 力扣-CSDN博客">LeetCode - 46 全排列_全排列 46 力扣-CSDN博客</a></p> 
+<p>这篇博客要我们求解的某个序列的全排列&#xff0c;全排列和排列的区别在于&#xff1a;</p> 
+<p>所谓排列&#xff0c;即从n个数中选m个数&#xff0c;组成不同顺序的排列&#xff0c;此时 m &lt;&#61; n</p> 
+<p>而全排列&#xff0c;特指 m &#61;&#61; n 的排列&#xff0c;比如序列&#xff1a;[a, b, c] 的全排列为&#xff1a;</p> 
+<ul><li>abc</li><li>acb</li><li>bac</li><li>bca</li><li>cab</li><li>cba</li></ul> 
+<p>因此&#xff0c;LeetCode 46 我们需要将 path.size() <span style="color:#fe2c24;"><strong>&lt;&#61;</strong></span> nums.length 的所有排列情况都记录到res中。</p> 
+<p></p> 
+<p>另外&#xff0c;本题还有一个不同&#xff1a;</p> 
+<ul><li>2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接</li><li>6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接</li></ul> 
+<p>此时&#xff0c;我们只需要在求解排列时&#xff0c;看当前排列选定元素是否为2&#xff0c;5&#xff0c;6&#xff0c;9中某个数&#xff0c;若是&#xff0c;则还需要尝试将当前选定元素做变化如下&#xff1a;</p> 
+<p>2-&gt;5&#xff1a;即当前选定元素为2&#xff0c;则同时尝试当前选定元素为5</p> 
+<p>5-&gt;2&#xff1a;即当前选定元素为5&#xff0c;则同时尝试当前选定元素为2</p> 
+<p>6-&gt;9&#xff1a;即当前选定元素为6&#xff0c;则同时尝试当前选定元素为9</p> 
+<p>9-&gt;6&#xff1a;即当前选定元素为9&#xff0c;则同时尝试当前选定元素为6</p> 
+<p></p> 
+<p>最后&#xff0c;关于N的取值&#xff0c;N为输入数中最大值&#xff0c;若N超过了最终求解的排列数个数&#xff0c;则N &#61; 排列数个数</p> 
+<p></p> 
+<h4 id="%E7%AE%97%E6%B3%95%E6%BA%90%E7%A0%81" style="background-color:transparent;">JS算法源码</h4> 
+<pre><code class="language-javascript">const rl &#61; require(&#34;readline&#34;).createInterface({ input: process.stdin });
+var iter &#61; rl[Symbol.asyncIterator]();
+const readline &#61; async () &#61;&gt; (await iter.next()).value;
+
+void (async function () {
+  const nums &#61; (await readline()).split(&#34;,&#34;).map(Number);
+  console.log(solution(nums));
+})();
+
+function solution(nums) {
+  for (let num of nums) {
+    //  输入的数字不在范围内
+    if (num &lt; 1 || num &gt; 9) return -1;
+  }
+
+  const set &#61; new Set(nums);
+
+  // 输入的数字有重复
+  if (set.size !&#61; 4) {
+    return -1;
+  }
+
+  // 屏幕不能同时给出 2 和 5
+  if (set.has(2) &amp;&amp; set.has(5)) {
+    return -1;
+  }
+
+  // 屏幕不能同时给出 6 和 9
+  if (set.has(6) &amp;&amp; set.has(9)) {
+    return -1;
+  }
+
+  const path &#61; [];
+  const vis &#61; new Array(nums.length).fill(false);
+
+  const map &#61; new Map([
+    [2, 5],
+    [5, 2],
+    [6, 9],
+    [9, 6],
+  ]);
+
+  // 记录排列
+  const res &#61; [];
+
+  // 排列求解
+  dfs(nums, vis, path, map, res);
+
+  // 给出这几个数字可拼成的数字从小到大排列位于第 N 位置的数字
+  res.sort((a, b) &#61;&gt; a - b);
+
+  // N为给出数字中最大的&#xff0c;如果不到这么多数字则给出最后一个即可
+  let n &#61; Math.min(Math.max(...nums), res.length);
+  return res[n - 1];
+}
+
+// 排列求解
+function dfs(nums, vis, path, map, res) {
+  if (path.length &gt; 0) {
+    res.push(parseInt(path.join(&#34;&#34;)));
+  }
+
+  if (path.length &#61;&#61; nums.length) {
+    return;
+  }
+
+  for (let i &#61; 0; i &lt; nums.length; i&#43;&#43;) {
+    if (vis[i]) continue;
+
+    vis[i] &#61; true;
+    path.push(nums[i]);
+    dfs(nums, vis, path, map, res);
+    path.pop();
+
+    // 2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接
+    // 6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接
+    if (map.has(nums[i])) {
+      path.push(map.get(nums[i]));
+      dfs(nums, vis, path, map, res);
+      path.pop();
+    }
+
+    vis[i] &#61; false;
+  }
+}
+</code></pre> 
+<p> </p> 
+<h4>Java算法源码</h4> 
+<pre><code class="language-java">import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc &#61; new Scanner(System.in);
+
+        int[] nums &#61; Arrays.stream(sc.nextLine().split(&#34;,&#34;)).mapToInt(Integer::parseInt).toArray();
+
+        System.out.println(solution(nums));
+    }
+
+    public static int solution(int[] nums) {
+        HashSet&lt;Integer&gt; set &#61; new HashSet&lt;&gt;();
+        int n &#61; Integer.MIN_VALUE;
+
+        for (int num : nums) {
+            if (num &lt; 1 || num &gt; 9) {
+                //  输入的数字不在范围内
+                return -1;
+            } else {
+                set.add(num);
+                n &#61; Math.max(n, num);
+            }
+        }
+
+        // 输入的数字有重复
+        if (set.size() !&#61; 4) return -1;
+
+        // 屏幕不能同时给出 2 和 5
+        if (set.contains(2) &amp;&amp; set.contains(5)) return -1;
+
+        // 屏幕不能同时给出 6 和 9
+        if (set.contains(6) &amp;&amp; set.contains(9)) return -1;
+
+        HashMap&lt;Integer, Integer&gt; map &#61; new HashMap&lt;&gt;();
+        map.put(2, 5);
+        map.put(5, 2);
+        map.put(6, 9);
+        map.put(9, 6);
+
+        boolean[] vis &#61; new boolean[nums.length];
+
+        String path &#61; &#34;&#34;;
+
+        // 记录排列
+        ArrayList&lt;Integer&gt; res &#61; new ArrayList&lt;&gt;();
+
+        // 排列求解
+        dfs(nums, vis, path, map, res);
+
+        // 给出这几个数字可拼成的数字从小到大排列位于第 N 位置的数字
+        res.sort((a, b) -&gt; a - b);
+
+        // N为给出数字中最大的&#xff0c;如果不到这么多数字则给出最后一个即可
+        n &#61; Math.min(n, res.size());
+        return res.get(n - 1);
+    }
+
+    // 排列求解
+    public static void dfs(int[] nums, boolean[] vis, String path, HashMap&lt;Integer, Integer&gt; map, ArrayList&lt;Integer&gt; res) {
+        if (!path.isEmpty()) {
+            res.add(Integer.parseInt(path));
+        }
+
+        if (path.length() &#61;&#61; nums.length) {
+            return;
+        }
+
+        for (int i &#61; 0; i &lt; nums.length; i&#43;&#43;) {
+            if (vis[i]) continue;
+
+            vis[i] &#61; true;
+
+            dfs(nums, vis, path &#43; nums[i], map, res);
+
+            // 2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接
+            // 6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接
+            if (map.containsKey(nums[i])) {
+                dfs(nums, vis, path &#43; map.get(nums[i]), map, res);
+            }
+
+            vis[i] &#61; false;
+        }
+    }
+}</code></pre> 
+<p> </p> 
+<h4 style="background-color:transparent;">Python算法源码</h4> 
+<pre><code class="language-python"># 输入获取
+nums &#61; list(map(int, input().split(&#34;,&#34;)))
+
+# 2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接
+# 6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接
+mapping &#61; {2: 5, 5: 2, 6: 9, 9: 6}
+
+
+# 排列求解
+def dfs(vis, path, res):
+    if len(path) &gt; 0:
+        res.append(int(&#34;&#34;.join(map(str, path))))
+
+    if len(path) &#61;&#61; len(nums):
+        return
+
+    for i in range(len(nums)):
+        if vis[i]:
+            continue
+
+        vis[i] &#61; True
+
+        path.append(nums[i])
+        dfs(vis, path, res)
+        path.pop()
+
+        # 2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接
+        # 6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接
+        if nums[i] in mapping:
+            path.append(mapping[nums[i]])
+            dfs(vis, path, res)
+            path.pop()
+
+        vis[i] &#61; False
+
+
+# 算法入口
+def solution():
+    for num in nums:
+        # 输入的数字不在范围内
+        if num &lt; 1 or num &gt; 9:
+            return -1
+
+    setNums &#61; set(nums)
+
+    # 输入的数字有重复
+    if len(setNums) !&#61; 4:
+        return -1
+
+    # 屏幕不能同时给出 2 和 5
+    if 2 in setNums and 5 in setNums:
+        return -1
+
+    # 屏幕不能同时给出 6 和 9
+    if 6 in setNums and 9 in setNums:
+        return -1
+
+    vis &#61; [False] * len(nums)
+    path &#61; []
+    res &#61; []  # 记录排列
+
+    # 排列求解
+    dfs(vis, path, res)
+
+    # 给出这几个数字可拼成的数字从小到大排列位于第N位置的数字
+    res.sort()
+
+    # N为给出数字中最大的&#xff0c;如果不到这么多数字则给出最后一个即可
+    n &#61; min(max(nums), len(res))
+    return res[n - 1]
+
+
+# 算法调用
+print(solution())
+</code></pre> 
+<p> </p> 
+<h4 style="background-color:transparent;">C算法源码</h4> 
+<pre><code class="language-cpp">#include &lt;stdio.h&gt;
+#include &lt;limits.h&gt;
+#include &lt;math.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define MAX_SIZE 1000
+
+// 排列求解
+void dfs(const int nums[], int vis[], char *path, int level, const int dic[], int res[], int *res_size) {
+    if (level &gt; 0) {
+        res[(*res_size)&#43;&#43;] &#61; atoi(path);
+    }
+
+    if (level &#61;&#61; 4) {
+        return;
+    }
+
+    for (int i &#61; 0; i &lt; 4; i&#43;&#43;) {
+        if (vis[i]) continue;
+
+        vis[i] &#61; 1;
+
+        path[level] &#61; (char) (nums[i] &#43; &#39;0&#39;);
+        dfs(nums, vis, path, level &#43; 1, dic, res, res_size);
+        path[level] &#61; &#39;\0&#39;;
+
+        // 2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接
+        // 6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接
+        int num &#61; dic[nums[i]];
+        if (num !&#61; 0) {
+            path[level] &#61; (char) (dic[num] &#43; &#39;0&#39;);
+            dfs(nums, vis, path, level &#43; 1, dic, res, res_size);
+            path[level] &#61; &#39;\0&#39;;
+        }
+
+        vis[i] &#61; 0;
+    }
+}
+
+int cmp(const void *a, const void *b) {
+    return *((int *) a) - *((int *) b);
+}
+
+int solution(const int nums[]) {
+    int n &#61; INT_MIN;
+
+    // 记录出现过的数字
+    int set[10] &#61; {0};
+
+    for (int i &#61; 0; i &lt; 4; i&#43;&#43;) {
+        int num &#61; nums[i];
+
+        //  输入的数字不在范围内
+        if (num &lt; 1 || num &gt; 9) return -1;
+
+        if (set[num]) {
+            // 输入的数字有重复
+            return -1;
+        } else {
+            set[num] &#61; 1;
+        }
+
+        // N为给出数字中最大的
+        n &#61; (int) fmax(n, num);
+    }
+
+    // 屏幕不能同时给出 2 和 5
+    if (set[2] &amp;&amp; set[5]) return -1;
+
+    // 屏幕不能同时给出 6 和 9
+    if (set[6] &amp;&amp; set[9]) return -1;
+
+    char path[5] &#61; {&#39;\0&#39;};
+    int vis[4] &#61; {0};
+
+    // 2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接
+    // 6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接
+    int dic[10] &#61; {0};
+    dic[2] &#61; 5;
+    dic[5] &#61; 2;
+    dic[6] &#61; 9;
+    dic[9] &#61; 6;
+
+    // 记录排列
+    int res[MAX_SIZE] &#61; {0};
+    int res_size &#61; 0;
+
+    // 排列求解
+    dfs(nums, vis, path, 0, dic, res, &amp;res_size);
+
+    // 给出这几个数字可拼成的数字从小到大排列位于第N位置的数字
+    qsort(res, res_size, sizeof(res[0]), cmp);
+
+    // N为给出数字中最大的&#xff0c;如果不到这么多数字则给出最后一个即可
+    if (n &lt;&#61; res_size) {
+        return res[n - 1];
+    } else {
+        return res[res_size - 1];
+    }
+}
+
+int main() {
+    int nums[MAX_SIZE];
+    int nums_size &#61; 0;
+
+    while (scanf(&#34;%d&#34;, &amp;nums[nums_size&#43;&#43;])) {
+        if (getchar() !&#61; &#39;,&#39;) break;
+    }
+
+    printf(&#34;%d\n&#34;, solution(nums));
+
+    return 0;
+}</code></pre> 
+<p></p> 
+<h4 style="background-color:transparent;">C&#43;&#43;算法源码</h4> 
+<pre><code class="language-cpp">#include&lt;bits/stdc&#43;&#43;.h&gt;
+using namespace std;
+
+vector&lt;int&gt; splitCin(char separator) {
+    string s;
+    getline(cin, s);
+
+    stringstream ss(s);
+    string token;
+
+    vector&lt;int&gt; res;
+    while (getline(ss, token, separator)) {
+        res.emplace_back(stoi(token));
+    }
+
+    return res;
+}
+
+// 排列求解
+void dfs(vector&lt;int&gt; &amp;nums, vector&lt;bool&gt; &amp;vis, const string &amp;path, map&lt;int, int&gt;&amp; dic, vector&lt;int&gt;&amp; res) {
+    if (!path.empty()) {
+        res.emplace_back(stoi(path));
+    }
+
+    if (path.size() &#61;&#61; nums.size()) {
+        return;
+    }
+
+    for (int i &#61; 0; i &lt; nums.size(); i&#43;&#43;) {
+        if (vis[i]) continue;
+
+        vis[i] &#61; true;
+
+        dfs(nums, vis, path &#43; to_string(nums[i]), dic, res);
+
+        // 2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接
+        // 6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接
+        if (dic.count(nums[i]) &gt; 0) {
+            dfs(nums, vis, path &#43; to_string(dic[nums[i]]), dic, res);
+        }
+
+        vis[i] &#61; false;
+    }
+}
+
+int solution(vector&lt;int&gt; &amp;nums) {
+    int n &#61; INT_MIN;
+
+    // 记录出现过的数字
+    bool set[10] &#61; {false};
+
+    for (const auto &amp;num: nums) {
+        if (num &lt; 1 || num &gt; 9) {
+            //  输入的数字不在范围内
+            return -1;
+        }
+
+        if (set[num]) {
+            // 输入的数字有重复
+            return -1;
+        } else {
+            set[num] &#61; true;
+        }
+
+        // N为给出数字中最大的
+        n &#61; max(n, num);
+    }
+
+    // 屏幕不能同时给出 2 和 5
+    if (set[2] &amp;&amp; set[5]) return -1;
+
+    // 屏幕不能同时给出 6 和 9
+    if (set[6] &amp;&amp; set[9]) return -1;
+
+    string path;
+    vector&lt;bool&gt; vis(nums.size(), false);
+
+    // 2 可以当作 5 来使用&#xff0c;5 也可以当作 2 来使用进行数字拼接
+    // 6 可以当作 9 来使用&#xff0c;9 也可以当作 6 来使用进行数字拼接
+    map&lt;int, int&gt; dic;
+    dic.emplace(2, 5);
+    dic.emplace(5, 2);
+    dic.emplace(6, 9);
+    dic.emplace(9, 6);
+
+    // 记录排列
+    vector&lt;int&gt; res;
+
+    // 排列求解
+    dfs(nums, vis, path, dic, res);
+
+    // 给出这几个数字可拼成的数字从小到大排列位于第N位置的数字
+    sort(res.begin(), res.end());
+
+    // N为给出数字中最大的&#xff0c;如果不到这么多数字则给出最后一个即可
+    if (n &lt;&#61; res.size()) {
+        return res[n - 1];
+    } else {
+        return res.back();
+    }
+}
+
+int main() {
+    vector&lt;int&gt; nums &#61; splitCin(&#39;,&#39;);
+    cout &lt;&lt; solution(nums) &lt;&lt; endl;
+}</code></pre> 
+<p></p>
+                </div>
+        </div>
+        <div id="treeSkill"></div>
+        <div id="blogExtensionBox" style="width:400px;margin:auto;margin-top:12px" class="blog-extension-box"></div>
+    <script>
+  $(function() {
+    setTimeout(function () {
+      var mathcodeList = document.querySelectorAll('.htmledit_views img.mathcode');
+      if (mathcodeList.length > 0) {
+        for (let i = 0; i < mathcodeList.length; i++) {
+          if (mathcodeList[i].naturalWidth === 0 || mathcodeList[i].naturalHeight === 0) {
+            var alt = mathcodeList[i].alt;
+            alt = '\\(' + alt + '\\)';
+            var curSpan = $('<span class="img-codecogs"></span>');
+            curSpan.text(alt);
+            $(mathcodeList[i]).before(curSpan);
+            $(mathcodeList[i]).remove();
+          }
+        }
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+      }
+    }, 1000)
+  });
+</script>
+</div></html>
